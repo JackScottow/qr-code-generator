@@ -3,6 +3,7 @@
 import React from "react";
 import QRCodeGenerator from "./components/qrcodegenerator";
 import Header from "./components/header";
+import "./globals.css";
 
 const Home: React.FC = () => {
   return (

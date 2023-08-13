@@ -8,8 +8,9 @@ const QRCodeGenerator: React.FC = () => {
 
   const handleDownload = () => {
     htmlToImage.toJpeg(document.getElementById("qr-code")!).then((dataUrl) => {
+      console.log(dataUrl);
       const link = document.createElement("a");
-      link.download = `${qrCodeValue}_qr.jpeg`;
+      link.share = `${qrCodeValue}_qr.jpeg`;
       link.href = dataUrl;
       link.click();
     });
@@ -24,14 +25,7 @@ const QRCodeGenerator: React.FC = () => {
       <div className="flex flex-col text-left lg:pl-4 justify-evenly">
         <div className="flex flex-col my-2">
           <label htmlFor="content">Content:</label>
-          <input type="text" name="content" value={qrCodeValue} onChange={(e) => setQRCodeValue(e.target.value)} placeholder={qrCodeValue} />
-        </div>
-        <div className="flex flex-col my-2">
-          <label htmlFor="size">Size:</label>
-          <select name="size" className="text-center my-2" onChange={(e) => setQrCodeSize(Number(e.target.value))}>
-            <option value="256">256px x 256px (Default)</option>
-            <option value="128">128px x 128px</option>
-          </select>
+          <input type="text" name="content" value={qrCodeValue} onChange={(e) => setQRCodeValue(e.target.value)} placeholder={qrCodeValue} className="text-center" />
         </div>
         <button className="bg-transparent hover:bg-slate-900 text-slate-900 font-semibold hover:text-slate-200 py-2 my-2 px-4 border border-slate-900 hover:border-transparent rounded" onClick={() => handleDownload()}>
           Download
