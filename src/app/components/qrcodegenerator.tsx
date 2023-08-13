@@ -3,18 +3,18 @@ import QrCode from "react-qr-code";
 import * as htmlToImage from "html-to-image";
 
 const QRCodeGenerator: React.FC = () => {
-  const [qrCodeValue, setQRCodeValue] = useState<string>("www.google.com");
+  const [qrCodeValue, setQRCodeValue] = useState<string>("www.jackscottow.com");
   const [qrCodeSize, setQrCodeSize] = useState<number>(256);
 
   const handleDownload = () => {
     htmlToImage.toJpeg(document.getElementById("qr-code")!).then((dataUrl) => {
-      console.log(dataUrl);
       const link = document.createElement("a");
-      link.share = `${qrCodeValue}_qr.jpeg`;
+      link.download = `${qrCodeValue}_qr.jpeg`;
       link.href = dataUrl;
       link.click();
     });
   };
+
   return (
     <div className="border-slate-200 border rounded-md flex flex-col lg:flex-row text-center  bg-slate-200 text-slate-900 p-4">
       <div className="border bg-slate-200 my-auto " id="qr-code">
@@ -22,7 +22,7 @@ const QRCodeGenerator: React.FC = () => {
         <p className="text-center ">{qrCodeValue}</p>
       </div>
 
-      <div className="flex flex-col text-left lg:pl-4 justify-evenly">
+      <div className="flex flex-col text-left lg:pl-4 justify-evenly lg:justify-center">
         <div className="flex flex-col my-2">
           <label htmlFor="content">Content:</label>
           <input type="text" name="content" value={qrCodeValue} onChange={(e) => setQRCodeValue(e.target.value)} placeholder={qrCodeValue} className="text-center" />
