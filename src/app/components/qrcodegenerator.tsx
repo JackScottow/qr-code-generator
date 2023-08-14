@@ -4,7 +4,6 @@ import * as htmlToImage from "html-to-image";
 
 const QRCodeGenerator: React.FC = () => {
   const [qrCodeValue, setQRCodeValue] = useState<string>("www.jackscottow.com");
-  const [qrCodeSize, setQrCodeSize] = useState<number>(256);
 
   const handleDownload = () => {
     htmlToImage.toJpeg(document.getElementById("qr-code")!).then((dataUrl) => {
@@ -18,7 +17,7 @@ const QRCodeGenerator: React.FC = () => {
   return (
     <div className="border-slate-200 border rounded-md flex flex-col lg:flex-row text-center  bg-slate-200 text-slate-900 p-4">
       <div className="border bg-slate-200 my-auto " id="qr-code">
-        <QrCode value={qrCodeValue} className="p-2 mx-auto bg-white" size={qrCodeSize} />
+        <QrCode value={qrCodeValue} className="p-2 mx-auto bg-white" />
         <p className="text-center ">{qrCodeValue}</p>
       </div>
 
